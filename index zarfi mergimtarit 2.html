@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="sq">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#211b18" />
+    <meta
+      name="description"
+      content="Zarfi i Mërgimtarit — mërgata pranë njerëzve të saj."
+    />
+    <title>Zarfi i Mërgimtarit</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap");
+
+      :root {
+        --ink: #211b18;
+        --paper: #faf7f0;
+        --cream: #eee5d8;
+        --rust: #bd5b3c;
+        --olive: #697455;
+        --line: #d9d0c2;
+        --muted: #71695f;
+        --sand: #d9c7a6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--paper);
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: "DM Sans", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+      }
+      .wrap {
+        width: min(1160px, calc(100% - 42px));
+        margin: auto;
+      }
+
+      /* MENUJA */
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #faf7f0ed;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+        font:
+          800 13px Manrope,
+          sans-serif;
+        letter-spacing: 0.3px;
+      }
+
+      .mark {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        color: white;
+        background: var(--rust);
+        border-radius: 12px;
+        font-size: 20px;
+        transform: rotate(-5deg);
+      }
+
+      .brand small {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font:
+          600 9px "DM Sans",
+          sans-serif;
+        letter-spacing: 1.5px;
+      }
+
+      .navlinks {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .navlinks a {
+        padding: 11px 10px;
+        border-radius: 3px;
+        color: #554d45;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .navlinks a:hover,
+      .navlinks a.active {
+        color: white;
+        background: var(--ink);
+      }
+
+      .donate {
+        padding: 12px 15px;
+        color: white;
+        background: var(--rust);
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      /* BUTONAT DHE TEKSTI */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 17px;
+        color: white;
+        background: var(--rust);
+        border: 1px solid var(--rust);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+      }
+
+      .btn.outline {
+        color: white;
+        background: transparent;
+        border-color: #95887a;
+      }
+
+      .btn.light {
+        color: var(--ink);
+        background: var(--paper);
+        border-color: var(--paper);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .eyebrow,
+      .crumb {
+        color: var(--rust);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+      }
+
+      .copy {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.9;
+      }
+
+      /* FAQET E BRENDSHME */
+      .site-page {
+        display: none;
+        min-height: 75vh;
+        animation: appear 0.3s ease;
+      }
+      .site-page.active {
+        display: block;
+      }
+
+      @keyframes appear {
+        from {
+          opacity: 0.25;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* BALLINA */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 72px 0;
+        color: var(--paper);
+        background: var(--ink);
+      }
+
+      .hero:after {
+        position: absolute;
+        top: -210px;
+        right: 1%;
+        color: #ffffff06;
+        content: "Z";
+        font:
+          600 590px "Playfair Display",
+          serif;
+        pointer-events: none;
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 45px;
+      }
+
+      .hero h1 {
+        margin: 18px 0;
+        font-size: clamp(54px, 7vw, 90px);
+        line-height: 0.98;
+        letter-spacing: -2px;
+      }
+
+      .hero h1 em {
+        color: #d38465;
+      }
+
+      .hero p {
+        max-width: 500px;
+        color: #d2c9bc;
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .hero .eyebrow {
+        color: var(--sand);
+      }
+
+      .video-poster {
+        position: relative;
+        display: block;
+        min-height: 320px;
+        overflow: hidden;
+        background: #302a26;
+      }
+
+      .video-poster img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+        filter: saturate(0.8);
+      }
+
+      .video-poster:after {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        width: 65px;
+        height: 65px;
+        margin: auto;
+        padding-left: 4px;
+        color: white;
+        background: var(--rust);
+        border-radius: 50%;
+        content: "▶";
+        font-size: 20px;
+      }
+
+      .poster-label {
+        position: absolute;
+        z-index: 1;
+        bottom: 14px;
+        left: 15px;
+        padding: 10px 13px;
+        color: white;
+        background: #211b18e8;
+        font-size: 10px;
+      }
+
+      .ribbon {
+        padding: 14px 0;
+        color: white;
+        background: var(--rust);
+        font:
+          600 11px Manrope,
+          sans-serif;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      .statrow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin-top: 27px;
+        background: #ffffff30;
+      }
+
+      .stat {
+        padding: 17px 12px;
+        background: var(--ink);
+      }
+
+      .stat strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #d99777;
+        font:
+          500 19px "Playfair Display",
+          serif;
+      }
+
+      .stat span {
+        color: #d2c9bc;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      /* SEKSIONET DHE KARTAT */
+      .section {
+        padding: 64px 0;
+      }
+      .section.cream {
+        background: var(--cream);
+      }
+      .section.dark {
+        color: var(--paper);
+        background: var(--ink);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        align-items: center;
+        gap: 45px;
+      }
+
+      .section h2,
+      .page-heading h1 {
+        margin: 12px 0 20px;
+        font:
+          500 clamp(38px, 5vw, 62px)/1.04 "Playfair Display",
+          serif;
+        letter-spacing: -0.8px;
+      }
+
+      .quote {
+        margin: 20px 0;
+        padding: 5px 0 5px 18px;
+        color: var(--rust);
+        border-left: 2px solid var(--rust);
+        font:
+          italic 19px "Playfair Display",
+          serif;
+      }
+
+      .dark .copy {
+        color: #d2c9bc;
+      }
+
+      .grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .tile {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: 23px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .dark .tile {
+        color: var(--paper);
+        background: #2b2420;
+        border-color: #51443a;
+      }
+
+      .tile .num {
+        color: var(--rust);
+        font:
+          italic 15px "Playfair Display",
+          serif;
+      }
+
+      .tile h3 {
+        margin: 25px 0 10px;
+        font:
+          500 25px/1.1 "Playfair Display",
+          serif;
+      }
+
+      .tile p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .dark .tile p {
+        color: #cfc5b8;
+      }
+
+      .tile a {
+        margin-top: auto;
+        color: var(--rust);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .page-heading {
+        padding: 50px 0 35px;
+        background: var(--cream);
+      }
+
+      .page-heading h1 {
+        max-width: 800px;
+      }
+      .page-heading p {
+        max-width: 700px;
+        color: #625a52;
+        font-size: 13px;
+        line-height: 1.9;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature {
+        padding: 24px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .feature h3 {
+        margin: 0 0 10px;
+        font:
+          500 26px "Playfair Display",
+          serif;
+      }
+      .feature p {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .icon {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 16px;
+        place-items: center;
+        color: var(--rust);
+        background: var(--cream);
+        font-size: 18px;
+      }
+
+      .embed {
+        padding: 8px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .embed iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+        background: #302a26;
+      }
+
+      .embed small {
+        display: block;
+        padding: 10px 4px 3px;
+        color: var(--muted);
+        font-size: 10px;
+      }
+
+      .callout {
+        padding: 23px;
+        color: #554d45;
+        background: #e7ddce;
+        border-left: 3px solid var(--rust);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .contact-item {
+        padding: 20px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        font-size: 12px;
+      }
+
+      .contact-item span {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--muted);
+        font-size: 10px;
+      }
+
+      .footer {
+        padding: 19px 0;
+        color: #c9bfb2;
+        background: #171310;
+        font-size: 10px;
+      }
+
+      .footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+      }
+      .footer a {
+        color: #e49775;
+      }
+
+      @media (max-width: 840px) {
+        .nav {
+          flex-wrap: wrap;
+          padding: 10px 0;
+        }
+        .navlinks {
+          order: 3;
+          width: 100%;
+          justify-content: space-between;
+          overflow: auto;
+        }
+        .navlinks a {
+          padding: 9px 7px;
+          white-space: nowrap;
+          font-size: 10px;
+        }
+        .hero-grid,
+        .split {
+          grid-template-columns: 1fr;
+          gap: 27px;
+        }
+        .video-poster,
+        .video-poster img {
+          min-height: 250px;
+        }
+        .grid3 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .tile:last-child {
+          grid-column: span 2;
+        }
+        .section {
+          padding: 50px 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .wrap {
+          width: calc(100% - 30px);
+        }
+        .brand {
+          font-size: 11px;
+        }
+        .donate {
+          padding: 10px;
+          font-size: 10px;
+        }
+        .navlinks a {
+          padding: 8px 5px;
+          font-size: 9px;
+        }
+        .hero {
+          padding: 45px 0;
+        }
+        .hero h1 {
+          font-size: 56px;
+        }
+        .grid3,
+        .feature-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .tile:last-child {
+          grid-column: auto;
+        }
+        .statrow {
+          grid-template-columns: 1fr;
+        }
+        .stat {
+          padding: 13px;
+        }
+        .footer .wrap {
+          flex-direction: column;
+        }
+        .section h2,
+        .page-heading h1 {
+          font-size: 42px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top">
+      <div class="wrap nav">
+        <a class="brand" href="#ballina">
+          <span class="mark">✉</span>
+          <span>ZARFI I MËRGIMTARIT<small>Me Sefer Demirin</small></span>
+        </a>
+
+        <nav class="navlinks">
+          <a href="#ballina" data-nav="ballina">Ballina</a>
+          <a href="#projektet" data-nav="projektet">Projektet</a>
+          <a href="#umreja" data-nav="umreja">Umreja</a>
+          <a href="#ekipi" data-nav="ekipi">Ekipi</a>
+          <a href="#kontakti" data-nav="kontakti">Kontakti</a>
+        </nav>
+
+        <a
+          class="donate"
+          href="https://www.gofundme.com/f/zarfi-mergimtarit"
+          target="_blank"
+          rel="noopener"
+        >
+          Mbështet projektin ↗
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- FAQJA 1: BALLINA -->
+      <section class="site-page active" id="ballina">
+        <div class="hero">
+          <div class="wrap hero-grid">
+            <div>
+              <span class="eyebrow">Shoqatë bamirësie · Kosovë</span>
+              <h1>Mirësia<br />udhëton <em>larg.</em></h1>
+              <p>
+                Nga mërgata te familjet tona — bashkohemi për t’u qëndruar pranë
+                njerëzve që kanë nevojë për përkrahje, kujdes dhe dinjitet.
+              </p>
+
+              <div class="actions">
+                <a class="btn" href="#projektet">Njihu me projektet →</a>
+                <a class="btn outline" href="#umreja">Shiko Umren →</a>
+              </div>
+
+              <div class="statrow">
+                <div class="stat">
+                  <strong>Familjet</strong><span>Përkrahje kur nevojitet.</span>
+                </div>
+                <div class="stat">
+                  <strong>Të moshuarit</strong><span>Kujdes me respekt.</span>
+                </div>
+                <div class="stat">
+                  <strong>Mërgata</strong><span>Pranë vendlindjes.</span>
+                </div>
+              </div>
+            </div>
+
+            <a
+              class="video-poster"
+              href="https://www.youtube.com/watch?v=sIW_LpvWwdA"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                src="https://img.youtube.com/vi/sIW_LpvWwdA/hqdefault.jpg"
+                alt="Pamje nga videoja e Umres e publikuar nga Zarfi i Mërgimtarit"
+              />
+              <span class="poster-label">VIDEO NGA KANALI ZYRTAR · HAPE ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="ribbon">
+          SOLIDARITET · PËRKUSHTIM · DIGNITET · SHPRESË · SOLIDARITET
+        </div>
+
+        <section class="section">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Misioni ynë</span>
+              <h2>Kur kujdesemi, ndryshon gjithçka.</h2>
+              <p class="quote">
+                “Një dorë e shtrirë mund ta bëjë një ditë më të lehtë.”
+              </p>
+            </div>
+            <div class="copy">
+              <p>
+                Zarfi i Mërgimtarit lidh njerëzit që duan të ndihmojnë me
+                familjet dhe të moshuarit që kanë nevojë për përkrahje. Shoqata
+                dokumenton histori dhe nisma në kanalin e vet publik.
+              </p>
+              <p>
+                Kjo faqe e paraqet misionin me faqe të veçanta, menu të qartë
+                dhe lidhje drejt materialeve zyrtare të shoqatës.
+              </p>
+              <a class="btn" href="#ekipi">Njihu me ekipin →</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cream">
+          <div class="wrap">
+            <span class="eyebrow">Zgjidh ku dëshiron të shkosh</span>
+            <h2>Hyr te faqet e misionit.</h2>
+
+            <div class="grid3">
+              <article class="tile">
+                <span class="num">01</span>
+                <h3>Projektet</h3>
+                <p>Njihu me fushat e punës dhe projektin për të moshuarit.</p>
+                <a href="#projektet">Hape faqen e projekteve ↗</a>
+              </article>
+
+              <article class="tile">
+                <span class="num">02</span>
+                <h3>Umreja</h3>
+                <p>Shiko videon e të moshuarve që tregojnë përvojën e tyre.</p>
+                <a href="#umreja">Hape faqen e Umres ↗</a>
+              </article>
+
+              <article class="tile">
+                <span class="num">03</span>
+                <h3>Ekipi</h3>
+                <p>
+                  Shiko videot e kanalit zyrtar dhe gjej kontaktet e shoqatës.
+                </p>
+                <a href="#ekipi">Hape faqen e ekipit ↗</a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section dark">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Një komunitet që vepron</span>
+              <h2>Mbështetja jote bëhet pjesë e një vepre.</h2>
+              <p class="copy">
+                Për mënyrat zyrtare të kontributit, vizito fushatën ose kontakto
+                shoqatën drejtpërdrejt.
+              </p>
+              <div class="actions">
+                <a
+                  class="btn"
+                  href="https://www.gofundme.com/f/zarfi-mergimtarit"
+                  target="_blank"
+                  rel="noopener"
+                  >Hape fushatën ↗</a
+                >
+                <a class="btn outline" href="#kontakti">Kontakto shoqatën →</a>
+              </div>
+            </div>
+            <div class="callout">
+              <strong>Shënim:</strong> Kjo faqe nuk mbledh pagesa. Donacionet
+              bëhen vetëm përmes kanaleve zyrtare të shoqatës.
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- FAQJA 2: PROJEKTET -->
+      <section class="site-page" id="projektet">
+        <div class="page-heading">
+          <div class="wrap">
+            <span class="crumb">Faqja 02 · Projektet</span>
+            <h1>Veprat që na bashkojnë.</h1>
+            <p>
+              Kjo faqe mbledh drejtimet kryesore të punës dhe të çon te
+              materialet publike të Zarfit të Mërgimtarit. Për detajet dhe
+              përditësimet, shiko publikimet e shoqatës.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#umreja">Shiko historinë e Umres →</a>
+              <a class="btn" href="#kontakti">Pyet për projektet →</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="wrap">
+            <div class="grid3">
+              <article class="tile">
+                <span class="num">01 / Familjet</span>
+                <h3>Ndihmë për familjet.</h3>
+                <p>
+                  Histori dhe reportazhe për familje që kërkojnë përkrahje në
+                  periudha të vështira.
+                </p>
+                <a
+                  href="https://www.youtube.com/channel/UC9eHYEPjrO1uB9XiMaPrTzA"
+                  target="_blank"
+                  rel="noopener"
+                  >Shiko videot e shoqatës ↗</a
+                >
+              </article>
+
+              <article class="tile">
+                <span class="num">02 / Të moshuarit</span>
+                <h3>Kujdes me dinjitet.</h3>
+                <p>
+                  Vëmendje për të moshuarit dhe përvoja të paharrueshme si
+                  udhëtimi i Umres.
+                </p>
+                <a href="#umreja">Hape faqen e Umres →</a>
+              </article>
+
+              <article class="tile">
+                <span class="num">03 / Shtëpia</span>
+                <h3>Një vend i sigurt.</h3>
+                <p>
+                  Shoqata prezanton projektin e shtëpisë për të moshuarit në
+                  faqen e vet publike.
+                </p>
+                <a
+                  href="https://zarfi-mergimtarit.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >Lexo te faqja e shoqatës ↗</a
+                >
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cream">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Si të bëhesh pjesë</span>
+              <h2>Mbështetja fillon me një lidhje.</h2>
+            </div>
+            <div class="copy">
+              <p>
+                Kontakto shoqatën për bashkëpunim, vullnetarizëm dhe informata
+                të përditësuara. Për donacione përdor vetëm kanalet e saj
+                zyrtare.
+              </p>
+              <div class="actions">
+                <a class="btn" href="#kontakti">Shko te kontaktet →</a>
+                <a
+                  class="btn"
+                  href="https://www.gofundme.com/f/zarfi-mergimtarit"
+                  target="_blank"
+                  rel="noopener"
+                  >Fushata publike ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- FAQJA 3: UMREJA -->
+      <section class="site-page" id="umreja">
+        <div class="page-heading">
+          <div class="wrap">
+            <span class="crumb">Faqja 03 · Umreja</span>
+            <h1>Një udhëtim që mbetet në zemër.</h1>
+            <p>
+              Të moshuarit tregojnë përvojën e tyre në Umre në një video të
+              publikuar nga kanali zyrtar i Zarfit të Mërgimtarit.
+            </p>
+            <div class="actions">
+              <a
+                class="btn"
+                href="https://www.youtube.com/watch?v=sIW_LpvWwdA"
+                target="_blank"
+                rel="noopener"
+                >Hape videon në YouTube ↗</a
+              >
+              <a class="btn" href="#projektet">Shiko projektet →</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Video nga shoqata</span>
+              <h2>Rrëfimet e të moshuarve.</h2>
+              <p class="copy">
+                Videon mund ta shikosh këtu ose ta hapësh në YouTube. Këtu
+                përdoret materiali i publikuar nga vetë organizata.
+              </p>
+              <p class="quote">“Mu ka zgjat jeta prej që jam ardh këtu.”</p>
+              <a
+                class="btn"
+                href="https://www.youtube.com/watch?v=sIW_LpvWwdA"
+                target="_blank"
+                rel="noopener"
+                >Shiko në YouTube ↗</a
+              >
+            </div>
+
+            <div class="embed">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/sIW_LpvWwdA"
+                title="Të moshuarit tregojnë përvojën e tyre në Umre — Zarfi i Mërgimtarit"
+                loading="lazy"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                allowfullscreen
+              >
+              </iframe>
+              <small>Burimi: kanali zyrtar Zarf'i Mergimtarit në YouTube</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cream">
+          <div class="wrap">
+            <span class="eyebrow">Më shumë nga shoqata</span>
+            <h2>Vazhdo me videot dhe aktivitetet.</h2>
+
+            <div class="feature-grid">
+              <article class="feature">
+                <div class="icon">▶</div>
+                <h3>Videot e publikuara</h3>
+                <p>
+                  Hape kanalin zyrtar dhe zgjidh videot për historitë e
+                  familjeve, aktivitetet dhe nismat e tjera.
+                </p>
+                <a
+                  class="btn"
+                  href="https://www.youtube.com/channel/UC9eHYEPjrO1uB9XiMaPrTzA"
+                  target="_blank"
+                  rel="noopener"
+                  >Hape kanalin ↗</a
+                >
+              </article>
+
+              <article class="feature">
+                <div class="icon">✉</div>
+                <h3>Pyetje për aktivitetet</h3>
+                <p>
+                  Për informata të sakta rreth udhëtimeve ose nismave, kontakto
+                  drejtpërdrejt shoqatën.
+                </p>
+                <a class="btn" href="#kontakti">Shko te kontaktet →</a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- FAQJA 4: EKIPI -->
+      <section class="site-page" id="ekipi">
+        <div class="page-heading">
+          <div class="wrap">
+            <span class="crumb">Faqja 04 · Ekipi</span>
+            <h1>Njerëzit pas misionit.</h1>
+            <p>
+              Njihu me punën e Sefer Demirit, ekipit dhe vullnetarëve përmes
+              materialeve të publikuara nga vetë shoqata.
+            </p>
+            <div class="actions">
+              <a
+                class="btn"
+                href="https://www.youtube.com/channel/UC9eHYEPjrO1uB9XiMaPrTzA"
+                target="_blank"
+                rel="noopener"
+                >Hape kanalin zyrtar ↗</a
+              >
+              <a class="btn" href="#kontakti">Kontakto ekipin →</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Materialet e shoqatës</span>
+              <h2>Seferi, stafi dhe vullnetarët.</h2>
+              <p class="copy">
+                Këtu nuk ka foto të huaja ose persona të paraqitur gabimisht si
+                anëtarë të ekipit. Lista e videove vjen nga kanali zyrtar i
+                Zarfit të Mërgimtarit.
+              </p>
+              <div class="callout">
+                <strong>Për fotografi të veçanta:</strong> përdorni imazhet
+                origjinale të shoqatës dhe merrni leje për publikimin e tyre.
+              </div>
+            </div>
+
+            <div class="embed">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/videoseries?list=UU9eHYEPjrO1uB9XiMaPrTzA"
+                title="Videot e kanalit zyrtar të Zarfit të Mërgimtarit"
+                loading="lazy"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                allowfullscreen
+              >
+              </iframe>
+              <small
+                >Videot e publikuara nga kanali zyrtar · Zgjidh materialin që
+                dëshiron të shikosh</small
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="section cream">
+          <div class="wrap">
+            <span class="eyebrow">Përfshihu</span>
+            <h2>Një ekip i madh nis me një hap.</h2>
+
+            <div class="grid3">
+              <article class="tile">
+                <span class="num">01</span>
+                <h3>Shiko aktivitetet</h3>
+                <p>
+                  Gjej historitë dhe nismat e publikuara në kanalin e shoqatës.
+                </p>
+                <a
+                  href="https://www.youtube.com/channel/UC9eHYEPjrO1uB9XiMaPrTzA"
+                  target="_blank"
+                  rel="noopener"
+                  >Shko te videot ↗</a
+                >
+              </article>
+
+              <article class="tile">
+                <span class="num">02</span>
+                <h3>Bëhu vullnetar</h3>
+                <p>
+                  Kontakto organizatën për të pyetur rreth mundësive të
+                  bashkëpunimit.
+                </p>
+                <a href="#kontakti">Gjej kontaktet →</a>
+              </article>
+
+              <article class="tile">
+                <span class="num">03</span>
+                <h3>Ndihmo misionin</h3>
+                <p>
+                  Informohu për projektet dhe mënyrat zyrtare të përkrahjes.
+                </p>
+                <a href="#projektet">Shiko projektet →</a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- FAQJA 5: KONTAKTI -->
+      <section class="site-page" id="kontakti">
+        <div class="page-heading">
+          <div class="wrap">
+            <span class="crumb">Faqja 05 · Kontakti</span>
+            <h1>Hap një bisedë të mirë.</h1>
+            <p>
+              Për bashkëpunim, vullnetarizëm, informata për projektet ose
+              donacionet, kontakto drejtpërdrejt Zarfin e Mërgimtarit.
+            </p>
+            <div class="actions">
+              <a class="btn" href="mailto:info@zarfi-mergimtarit.com"
+                >Dërgo email ↗</a
+              >
+              <a class="btn" href="tel:+38349550503">Telefono ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="wrap">
+            <span class="eyebrow">Të dhënat e kontaktit</span>
+            <h2>Kontakto shoqatën.</h2>
+
+            <div class="contact-grid">
+              <a class="contact-item" href="tel:+38349550503"
+                ><span>TELEFON</span><strong>+383 49 550 503 ↗</strong></a
+              >
+              <a class="contact-item" href="mailto:info@zarfi-mergimtarit.com"
+                ><span>EMAIL</span
+                ><strong>info@zarfi-mergimtarit.com ↗</strong></a
+              >
+              <a
+                class="contact-item"
+                href="https://zarfi-mergimtarit.com/"
+                target="_blank"
+                rel="noopener"
+                ><span>FAQJA ZYRTARE</span
+                ><strong>zarfi-mergimtarit.com ↗</strong></a
+              >
+              <a
+                class="contact-item"
+                href="https://www.youtube.com/channel/UC9eHYEPjrO1uB9XiMaPrTzA"
+                target="_blank"
+                rel="noopener"
+                ><span>YOUTUBE</span><strong>Zarf'i Mergimtarit ↗</strong></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="section cream">
+          <div class="wrap split">
+            <div>
+              <span class="eyebrow">Përkrahja</span>
+              <h2>Donacionet në kanalet zyrtare.</h2>
+            </div>
+            <div class="copy">
+              <p>
+                Kjo faqe nuk përpunon pagesa dhe nuk ruan të dhëna bankare. Për
+                donacione, ndiq udhëzimet e shoqatës ose të fushatës së saj
+                publike.
+              </p>
+              <div class="actions">
+                <a
+                  class="btn"
+                  href="https://www.gofundme.com/f/zarfi-mergimtarit"
+                  target="_blank"
+                  rel="noopener"
+                  >Hape fushatën ↗</a
+                >
+                <a class="btn" href="#projektet">Shiko projektet →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>Zarfi i Mërgimtarit · Me zemër, për njerëzit tanë.</span>
+        <a href="#ballina">Kthehu në ballinë ↑</a>
+      </div>
+    </footer>
+
+    <script>
+      function showPage(id) {
+        const page = document.getElementById(id);
+        if (!page) return;
+
+        document.querySelectorAll(".site-page").forEach((section) => {
+          section.classList.toggle("active", section.id === id);
+        });
+
+        document.querySelectorAll("[data-nav]").forEach((link) => {
+          link.classList.toggle("active", link.dataset.nav === id);
+        });
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const id = link.getAttribute("href").slice(1);
+          if (document.getElementById(id)) {
+            event.preventDefault();
+            history.pushState(null, "", "#" + id);
+            showPage(id);
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-nav]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          const id = link.dataset.nav;
+          history.pushState(null, "", "#" + id);
+          showPage(id);
+        });
+      });
+
+      window.addEventListener("popstate", () => {
+        showPage(location.hash.slice(1) || "ballina");
+      });
+
+      showPage(location.hash.slice(1) || "ballina");
+    </script>
+  </body>
+</html>
